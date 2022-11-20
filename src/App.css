@@ -1,0 +1,45 @@
+#root {
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+.App {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.circle {
+  position: absolute;
+  color: black;
+  text-align: center;
+  height: 30px;
+  width: 30px;
+  border: 1px solid #ececec;
+  border-radius: 100%;
+  background-color: #ececec;
+  transform: translate(-50%, -50%);
+  box-shadow: #a1a1a1 1px 3px 20px;
+  animation-name: circle;
+  animation-duration: .5s;
+}
+
+@keyframes circle {
+  0% {height: 1px; width: 1px;}
+  80% {height: 33px; width: 33px;}
+  100% {height: 30px; width: 30px;}
+}
+
+.buttons {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+
+.button-back {
+ left: 40%;   
+}
