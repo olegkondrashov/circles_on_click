@@ -11,6 +11,7 @@
   padding: 0;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
 }
 
 .circle {
@@ -22,10 +23,9 @@
   border: 1px solid #ececec;
   border-radius: 100%;
   background-color: #ececec;
-  transform: translate(-50%, -50%);
   box-shadow: #a1a1a1 1px 3px 20px;
   animation-name: circle;
-  animation-duration: .5s;
+  animation-duration: 0.5s;
 }
 
 @keyframes circle {
@@ -35,11 +35,12 @@
 }
 
 .buttons {
+  z-index: 15;
   position: absolute;
   top: 0;
-  z-index: 10;
-}
-
-.button-back {
- left: 40%;   
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }

@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import './App.css'
 
 function App() {
 
   const [circles, setCircles] = useState([]);
   const [circlesToForwards, setCirclesToForwards] = useState([]);
+  const [dropped, setDropped] = useState(false);
 
   function addCircle(e) {
     const {clientX, clientY, target} = e;
@@ -27,14 +29,31 @@ function App() {
     setCirclesToForwards(returnedCircles);
   }
 
+
+
   return (
     <>
-      <button disabled={circles.length === 0} onClick={removeCircle} className='buttons button-back'>Step back</button>
-      <button disabled={circlesToForwards.length === 0} onClick={returnCircle} className='buttons button-forward'>Step forward</button>
+      <div className='buttons'>
+        <button disabled={circles.length === 0} onClick={removeCircle}>Step back</button>
+        <button disabled={circlesToForwards.length === 0} onClick={returnCircle}>Step forward</button>
+        <button disabled={circles.length === 0} onClick={() => {setDropped(!dropped)}}>Drop Circles</button>
+      </div>
+
       <div onClick={addCircle} className="App">
+
         {circles.map((circle, index) => (
-         circle.target.className === 'buttons' || circle.target.className === 'circle' ? null : <div key={index} className='circle' style={{top: circle.y + 'px', left: circle.x + 'px'}}></div>
+         circle.target.className === 'buttons' || circle.target.className === 'circle' ? null : 
+         
+          <motion.div 
+            animate={{y : dropped ? 93 + 'vh': circle.y - 15 + 'px'}}
+            whileHover={{backgroundColor: 'rgb(255, 0, 0)', boxShadow: '#FF0000 1px 3px 20px'}}
+            transition={{type: dropped ? 'spring': undefined}}
+            key={index} className='circle' 
+            style={{ left: circle.x - 15 + 'px'}}>
+          </motion.div>
+
         ))}
+
       </div>
     </>
   )
